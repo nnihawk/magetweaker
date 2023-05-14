@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <NNI_Tweaker>
+            <active>true</active>
+            <codePool>local</codePool>
+        </NNI_Tweaker>
+    </modules>
+</config>

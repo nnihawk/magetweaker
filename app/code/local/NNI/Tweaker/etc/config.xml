@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <NNI_Tweaker>
+            <version>1.0</version>
+        </NNI_Tweaker>
+    </modules>
+    <global>
+        <models>
+            <nni_tweaker>
+                <class>NNI_Tweaker_Model</class>
+            </nni_tweaker>
+        </models>
+        <blocks>
+            <nni_tweaker>
+                <class>NNI_Tweaker_Block</class>
+            </nni_tweaker>
+            <adminhtml>
+                <rewrite>
+                    <catalog_form_renderer_fieldset_element>NNI_Tweaker_Block_Adminhtml_Catalog_Form_Renderer_Fieldset_Element</catalog_form_renderer_fieldset_element>
+                    <catalog_form_renderer_attribute_urlkey>NNI_Tweaker_Block_Adminhtml_Catalog_Form_Renderer_Attribute_Urlkey</catalog_form_renderer_attribute_urlkey>
+                    <catalog_product_edit_tab_inventory>NNI_Tweaker_Block_Adminhtml_Catalog_Product_Edit_Tab_Inventory</catalog_product_edit_tab_inventory>
+                    <catalog_product_edit>NNI_Tweaker_Block_Adminhtml_Catalog_Product_Edit</catalog_product_edit>
+                    <cms_page_edit>NNI_Tweaker_Block_Adminhtml_Cms_Page_Edit</cms_page_edit>
+                </rewrite>
+            </adminhtml>
+            <bundle>
+                <rewrite>
+                    <adminhtml_catalog_product_edit_tab_attributes_extend>NNI_Tweaker_Block_Adminhtml_Catalog_Product_Edit_Tab_Attributes_Extend</adminhtml_catalog_product_edit_tab_attributes_extend>
+                    <adminhtml_catalog_product_edit_tab_attributes_special>NNI_Tweaker_Block_Adminhtml_Catalog_Product_Edit_Tab_Attributes_Special</adminhtml_catalog_product_edit_tab_attributes_special>
+                </rewrite>
+            </bundle>
+        </blocks>
+        <helpers>
+            <nni_tweaker>
+                <class>NNI_Tweaker_Helper</class>
+            </nni_tweaker>
+        </helpers>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <NNI_Tweaker before="Mage_Adminhtml">NNI_Tweaker_Adminhtml</NNI_Tweaker>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

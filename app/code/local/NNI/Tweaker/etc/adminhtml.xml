@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <nni_tweaker>
+                                        <title>Tweaker</title>
+                                    </nni_tweaker>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
