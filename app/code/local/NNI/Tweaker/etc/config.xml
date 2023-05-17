@@ -22,6 +22,8 @@
                     <catalog_product_edit_tab_inventory>NNI_Tweaker_Block_Adminhtml_Catalog_Product_Edit_Tab_Inventory</catalog_product_edit_tab_inventory>
                     <catalog_product_edit>NNI_Tweaker_Block_Adminhtml_Catalog_Product_Edit</catalog_product_edit>
                     <cms_page_edit>NNI_Tweaker_Block_Adminhtml_Cms_Page_Edit</cms_page_edit>
+                    <sales_order_view_info>NNI_Tweaker_Block_Adminhtml_Sales_Order_View_Info</sales_order_view_info>
+                    <catalog_product_attribute_grid>NNI_Tweaker_Block_Adminhtml_Catalog_Product_Attribute_Grid</catalog_product_attribute_grid>
                 </rewrite>
             </adminhtml>
             <bundle>
@@ -48,4 +50,13 @@
             </adminhtml>
         </routers>
     </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <nni_tewaker>
+                    <file>nni/tweaker.xml</file>
+                </nni_tewaker>
+            </updates>
+        </layout>
+    </adminhtml>
 </config>

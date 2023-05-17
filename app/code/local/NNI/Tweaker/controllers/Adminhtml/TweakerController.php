@@ -60,4 +60,129 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
             Mage::getSingleton('adminhtml/session')->addError($this->__('Invalid id!'));
         }
     }
+
+    public function changeOrderEmailAction()
+    {
+        $email = $this->getRequest()->getParam('email');
+        $orderId = $this->getRequest()->getParam('order_id');
+        $order = Mage::getModel('sales/order')->load($orderId);
+
+        if(!$order->getId()){
+            Mage::getSingleton('adminhtml/session')->addError($this->__('Invalid order!'));
+        } else {
+            $order->setCustomerEmail($email)->save();
+            Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Email changed successfully!'));
+        }
+
+        return $this->_redirect('*/sales_order/view', array('order_id' => $orderId));
+    }
+
+    public function phpinfoViewAction()
+    {
+        $this->loadLayout();
+        ob_start();
+        phpinfo(INFO_GENERAL | INFO_CONFIGURATION | INFO_MODULES | INFO_ENVIRONMENT | INFO_VARIABLES);
+        $phpinfo = ob_get_contents();
+        ob_get_clean();
+
+        $phpinfo = substr($phpinfo, strpos($phpinfo,'<body>')+6, strlen($phpinfo));
+        $phpinfo = str_replace('</body></html>','', $phpinfo);
+
+        $html = '<div>
+            <div class="content-header">
+                <table cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td style="width:50%;"><h3 class="icon-head head-cms-page">PHP-Info</h3></td>
+                            <td class="form-buttons"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><div class="phpinfo-block">' . $phpinfo . '</div>';
+
+        $block = $this->getLayout()->createBlock('core/text')->setText($html);
+        $this->getLayout()->getBlock('content')->append($block);
+        $this->renderLayout();
+    }
+
+    public function openmageViewAction()
+    {
+        $this->loadLayout();
+        $html = '
+        <div class="content-header">
+                <table cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td style="width:50%%;"><h3 class="icon-head head-cms-page">Openmage-Info</h3></td>
+                            <td class="form-buttons"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        <table class="openmage-info-table">';
+
+        $fields = ['Openmage-Version:', 'Magento-Version:', 'Edition:', 'Path:', 'Stores:', 'Localisation:', 'Installation-Date:'];
+        foreach ($fields as $field) {
+            $html .= '<tr><td class="label">' . $field . '</td><td class="value">%s</td></tr>';
+        }
+        $html .= '</table>';
+
+        $stores = [];
+        foreach(Mage::app()->getStores() as $store) {
+            $stores[] = str_pad($store->getId(),5, ' ', STR_PAD_RIGHT) . $store->getName() . ' [' . $store->getCode(). '] -> '.
+                $store->getBaseUrl();
+        }
+
+        $html = sprintf(
+            $html,
+            Mage::getOpenMageVersion(),
+            Mage::getVersion(),
+            Mage::getEdition(),
+            Mage::getBaseDir(),
+            implode('<br>', $stores),
+            Mage::app()->getLocale()->getLocaleCode(),
+            Mage::getConfig()->getNode('global/install/date'),
+        );
+
+        $block = $this->getLayout()->createBlock('core/text')->setText($html);
+        $this->getLayout()->getBlock('content')->append($block);
+        $this->renderLayout();
+    }
+
+    public function extensionViewAction()
+    {
+        $this->loadLayout();
+        $html = '
+        <div class="content-header">
+                <table cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td style="width:50%%;"><h3 class="icon-head head-cms-page">Installed Extensions</h3></td>
+                            <td class="form-buttons"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <table class="modules-list-table">';
+
+        $modules = Mage::getConfig()->getNode('modules')->children();
+        $html .= '<tr><td>Name</td><td>Active</td><td>Code-Pool</td><td>Version</td><td>Dependencies</td></tr>';
+
+        foreach ($modules as $name => $module) {
+            $depends = [];
+            if ($module->depends) {
+                foreach ($module->depends->children() as $name => $dep) {
+                    $depends[] = $name;
+                }
+            }
+            $html .= '<tr><td>' . $name .'</td><td>' . $module->active . '</td><td>' . $module->codePool .
+                '</td><td>' . $module->version . '</td><td>' . implode('<br>', $depends) . '</td></tr>';
+        }
+        $html .= '</table>';
+
+        $block = $this->getLayout()->createBlock('core/text')->setText($html);
+        $this->getLayout()->getBlock('content')->append($block);
+        $this->renderLayout();
+    }
 }

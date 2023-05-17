@@ -1,2 +1,4 @@
-app/code/local/NNI/Tweaker/                               app/code/local/NNI/Tweaker/
-app/etc/modules/NNI_Tweaker.xml                           app/etc/modules/NNI_Tweaker.xml
+app/code/local/NNI/Tweaker/                                         app/code/local/NNI/Tweaker/
+app/design/adminhtml/default/default/layout/nni/tweaker.xml         app/design/adminhtml/default/default/layout/nni/tweaker.xml
+app/etc/modules/NNI_Tweaker.xml                                     app/etc/modules/NNI_Tweaker.xml
+skin/adminhtml/default/default/nni_tweaker.css                      skin/adminhtml/default/default/nni_tweaker.css

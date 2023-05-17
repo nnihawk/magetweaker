@@ -1,5 +1,49 @@
 <?xml version="1.0"?>
 <config>
+    <menu>
+        <catalog>
+            <children>
+                <attributes>
+                    <children>
+                        <attributes translate="title" module="nni_tweaker">
+                            <title>Product Attributes</title>
+                            <action>adminhtml/catalog_product_attribute/</action>
+                        </attributes>
+                        <category_attributes translate="title" module="nni_tweaker">
+                            <title>Category Attributes</title>
+                            <action>adminhtml/category_attribute/</action>
+                        </category_attributes>
+                    </children>
+                    <sort_order>20</sort_order>
+                </attributes>
+            </children>
+        </catalog>
+        <system>
+            <children>
+                <nni_information translate="title" module="nni_tweaker">
+                    <title>Environment Information</title>
+                    <sort_order>-10</sort_order>
+                    <children>
+                        <php_info translate="title">
+                            <title>PHP-Info</title>
+                            <action>adminhtml/tweaker/phpinfoView</action>
+                            <sort_order>10</sort_order>
+                        </php_info>
+                        <openmage_info translate="title">
+                            <title>Openmage-Info</title>
+                            <action>adminhtml/tweaker/openmageView</action>
+                            <sort_order>10</sort_order>
+                        </openmage_info>
+                        <extension_info translate="title">
+                            <title>Extension-Info</title>
+                            <action>adminhtml/tweaker/extensionView</action>
+                            <sort_order>10</sort_order>
+                        </extension_info>
+                    </children>
+                </nni_information>
+            </children>
+        </system>
+    </menu>
     <acl>
         <resources>
             <admin>
