@@ -39,6 +39,11 @@
                             <action>adminhtml/tweaker/extensionView</action>
                             <sort_order>10</sort_order>
                         </extension_info>
+                        <server_info translate="title">
+                            <title>Server-Info</title>
+                            <action>adminhtml/tweaker/serverView</action>
+                            <sort_order>15</sort_order>
+                        </server_info>
                     </children>
                 </nni_information>
             </children>

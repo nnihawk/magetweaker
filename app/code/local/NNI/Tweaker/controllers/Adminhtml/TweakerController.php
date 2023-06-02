@@ -106,6 +106,48 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
         $this->renderLayout();
     }
 
+    public function serverViewAction()
+    {
+        $this->loadLayout();
+        $infoParams = ['DOCUMENT_ROOT', 'SERVER_NAME', 'SERVER_PROTOCOL', 'REMOTE_ADDR', 'SERVER_SOFTWARE',
+            'HTTP_USER_AGENT','HTTP_HOST'];
+        $serverInfo = '';
+
+        $serverInfo .= '<tr><td class="label">' . $this->__('MySQL-Version') . '</td>
+            <td class="value">' . $this->getMySQLVersion() .'</td></tr>';
+        $serverInfo .= '<tr><td class="label">' . $this->__('PHP-Version') . '</td>
+            <td class="value">' . phpversion() .'</td></tr>';
+        $serverInfo .= '<tr><td class="label">' . $this->__('memory_limit') . '</td>
+            <td class="value">' . ini_get('memory_limit') .'</td></tr>';
+        $serverInfo .= '<tr><td class="label">' . $this->__('upload_max_filesize') . '</td>
+            <td class="value">' . ini_get('upload_max_filesize') .'</td></tr>';
+        $serverInfo .= '<tr><td class="label">' . $this->__('max_execution_time') . '</td>
+            <td class="value">' . ini_get('max_execution_time') .'</td></tr>';
+
+        foreach ($_SERVER as $key => $item) {
+            if (in_array($key, $infoParams)) {
+                $serverInfo .= '<tr><td class="label">' . $key . '</td><td class="value">' . $item .'</td></tr>';
+            }
+        }
+
+        $html = '<div>
+            <div class="content-header">
+                <table cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td style="width:50%;"><h3 class="icon-head head-cms-page">Server-Info</h3></td>
+                            <td class="form-buttons"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><div class="serverinfo-block"><table cellspacing="0"><tbody>' . $serverInfo . '</tbody></table></div>';
+
+        $block = $this->getLayout()->createBlock('core/text')->setText($html);
+        $this->getLayout()->getBlock('content')->append($block);
+        $this->renderLayout();
+    }
+
     public function openmageViewAction()
     {
         $this->loadLayout();
@@ -122,9 +164,10 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
             </div>
         <table class="openmage-info-table">';
 
-        $fields = ['Openmage-Version:', 'Magento-Version:', 'Edition:', 'Path:', 'Stores:', 'Localisation:', 'Installation-Date:'];
+        $fields = ['Openmage-Version:', 'Magento-Version:', 'Edition:', 'Path:', 'Stores:', 'Localisation:',
+            'Installation-Date:', 'Zend-Version:'];
         foreach ($fields as $field) {
-            $html .= '<tr><td class="label">' . $field . '</td><td class="value">%s</td></tr>';
+            $html .= '<tr><td class="label">' . $this->__($field) . '</td><td class="value">%s</td></tr>';
         }
         $html .= '</table>';
 
@@ -143,6 +186,7 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
             implode('<br>', $stores),
             Mage::app()->getLocale()->getLocaleCode(),
             Mage::getConfig()->getNode('global/install/date'),
+            zend_version()
         );
 
         $block = $this->getLayout()->createBlock('core/text')->setText($html);
@@ -184,5 +228,12 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
         $block = $this->getLayout()->createBlock('core/text')->setText($html);
         $this->getLayout()->getBlock('content')->append($block);
         $this->renderLayout();
+    }
+
+    private function getMySQLVersion()
+    {
+        $output = shell_exec('mysql -V');
+        preg_match('@[0-9]+\.[0-9]+\.[0-9]+@', $output, $version);
+        return $version[0];
     }
 }

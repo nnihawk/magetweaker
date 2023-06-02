@@ -16,23 +16,23 @@
     background: lightblue
 }
 
-.openmage-info-table
+.openmage-info-table, .serverinfo-block
 {
     width: 100%;
     border-spacing: 0;
     border-collapse: collapse;
 }
 
-.openmage-info-table td
+.openmage-info-table td, .serverinfo-block td
 {
-    width: 70%;
+    width: 60%;
     border: 1px solid gray;
     padding: 5px;
     word-wrap: anywhere;
 }
 
-.openmage-info-table td:nth-child(1) {
-    width: 30%;
+.openmage-info-table td:nth-child(1), .serverinfo-block td:nth-child(1) {
+    width: 40%;
 }
 
 .phpinfo-block table,  .phpinfo-block table .e,  .phpinfo-block table .v,  .phpinfo-block table th
