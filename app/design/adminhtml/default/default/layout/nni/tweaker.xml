@@ -3,9 +3,7 @@
 <layout>
     <default>
         <reference name="head">
-            <!--
-            <action method="addJs"><script>prototype/prototype.js</script></action>
-            -->
+            <action method="addJs"><script>nni/tweaker.js</script></action>
             <action method="addCss"><name>nni_tweaker.css</name></action>
         </reference>
     </default>

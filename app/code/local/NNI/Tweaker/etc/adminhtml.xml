@@ -44,8 +44,18 @@
                             <action>adminhtml/tweaker/serverView</action>
                             <sort_order>15</sort_order>
                         </server_info>
+                        <browser_info translate="title">
+                            <title>Browser-Info</title>
+                            <action>adminhtml/tweaker/browserView</action>
+                            <sort_order>20</sort_order>
+                        </browser_info>
                     </children>
                 </nni_information>
+                <nni_email_queue translate="title" module="nni_tweaker">
+                    <title>Email-Queue Overview</title>
+                    <sort_order>-10</sort_order>
+                    <action>adminhtml/tweaker_queue/index</action>
+                </nni_email_queue>
             </children>
         </system>
     </menu>

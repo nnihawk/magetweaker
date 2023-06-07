@@ -123,6 +123,8 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
             <td class="value">' . ini_get('upload_max_filesize') .'</td></tr>';
         $serverInfo .= '<tr><td class="label">' . $this->__('max_execution_time') . '</td>
             <td class="value">' . ini_get('max_execution_time') .'</td></tr>';
+        $serverInfo .= '<tr><td class="label">' . $this->__('OS') . '</td>
+            <td class="value">' . php_uname() .'</td></tr>';
 
         foreach ($_SERVER as $key => $item) {
             if (in_array($key, $infoParams)) {
@@ -141,7 +143,9 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
                     </tbody>
                 </table>
             </div>
-        </div><div class="serverinfo-block"><table cellspacing="0"><tbody>' . $serverInfo . '</tbody></table></div>';
+        </div><div class="serverinfo-block"><table cellspacing="0" class="simple-list-table">
+        <tbody>' . $serverInfo . '</tbody>
+        </table></div>';
 
         $block = $this->getLayout()->createBlock('core/text')->setText($html);
         $this->getLayout()->getBlock('content')->append($block);
@@ -162,7 +166,7 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
                     </tbody>
                 </table>
             </div>
-        <table class="openmage-info-table">';
+        <table class="openmage-info-table simple-list-table">';
 
         $fields = ['Openmage-Version:', 'Magento-Version:', 'Edition:', 'Path:', 'Stores:', 'Localisation:',
             'Installation-Date:', 'Zend-Version:'];
@@ -174,7 +178,7 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
         $stores = [];
         foreach(Mage::app()->getStores() as $store) {
             $stores[] = str_pad($store->getId(),5, ' ', STR_PAD_RIGHT) . $store->getName() . ' [' . $store->getCode(). '] -> '.
-                $store->getBaseUrl();
+                '<a href="' . $store->getBaseUrl() . '">' . $store->getBaseUrl() . '</a>';
         }
 
         $html = sprintf(
@@ -224,6 +228,32 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
                 '</td><td>' . $module->version . '</td><td>' . implode('<br>', $depends) . '</td></tr>';
         }
         $html .= '</table>';
+
+        $block = $this->getLayout()->createBlock('core/text')->setText($html);
+        $this->getLayout()->getBlock('content')->append($block);
+        $this->renderLayout();
+    }
+
+    public function browserViewAction()
+    {
+        $this->loadLayout();
+        $html = '
+        <div class="content-header">
+                <table cellspacing="0">
+                    <tbody>
+                        <tr>
+                            <td style="width:50%%;"><h3 class="icon-head head-cms-page">Browser Information</h3></td>
+                            <td class="form-buttons"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <table id="browser-list-table" class="simple-list-table"></table>
+            <script>
+                var tweakerInfo = new TweakerInfo();
+                tweakerInfo.decorateInfoTable("browser-list-table");
+            </script>';
+
 
         $block = $this->getLayout()->createBlock('core/text')->setText($html);
         $this->getLayout()->getBlock('content')->append($block);

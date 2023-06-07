@@ -22,18 +22,14 @@ class NNI_Tweaker_Block_Adminhtml_Cms_Page_Edit extends Mage_Adminhtml_Block_Cms
             $this->_addButton('export_to_json', [
                 'label'     => $this->__('Export to JSON'),
                 'onclick'   => 'exportCMSPage()',
-                'style'     => 'color: #fff;border-color: #4d22ac;background: linear-gradient(180deg,
-                                    rgba(240,240,244,1) 0%, #4d22ac 50%)',
-                'class'     => 'go',
+                'class'     => 'action_button_darkblue go',
                 'title'     => $this->__('Export to JSON-file for import')
             ], -1,-2);
 
             $this->_addButton('import_from_json', [
                 'label'     => $this->__('Import from JSON'),
                 'onclick'   => 'importCMSPage(this)',
-                'style'     => 'color: #fff;border-color: #ac222f;background: linear-gradient(180deg,
-                                    rgba(240,240,244,1) 0%, #ac222f 50%)',
-                'class'     => 'save',
+                'class'     => 'action_button_darkred save',
                 'title'     => $this->__('Select JSON for import')
             ], -1,-1);
 

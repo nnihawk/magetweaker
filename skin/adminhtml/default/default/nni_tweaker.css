@@ -11,28 +11,10 @@
     padding: 5px;
     word-wrap: anywhere;
 }
+
 .modules-list-table tr:nth-child(1) {
     font-weight: bold;
     background: lightblue
-}
-
-.openmage-info-table, .serverinfo-block
-{
-    width: 100%;
-    border-spacing: 0;
-    border-collapse: collapse;
-}
-
-.openmage-info-table td, .serverinfo-block td
-{
-    width: 60%;
-    border: 1px solid gray;
-    padding: 5px;
-    word-wrap: anywhere;
-}
-
-.openmage-info-table td:nth-child(1), .serverinfo-block td:nth-child(1) {
-    width: 40%;
 }
 
 .phpinfo-block table,  .phpinfo-block table .e,  .phpinfo-block table .v,  .phpinfo-block table th
@@ -54,4 +36,63 @@
     background: #b0bdff;
     margin-top: 25px;
     color: black;
+}
+
+.simple-list-table
+{
+    width: 100%;
+    border: 1px solid gray;
+    word-wrap: anywhere;
+    padding: 5px;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.simple-list-table td
+{
+    min-width: 100px;
+    padding: 5px;
+}
+
+.simple-list-table tr:nth-child(odd)
+{
+    background: rgba(132, 155, 163, 0.19)
+}
+
+.nni_tweaker_hint td
+{
+    min-width: 100px;
+    padding: 5px;
+}
+
+.action_button_darkblue
+{
+    color: #fff;
+    border-color: #4d22ac;
+    background: linear-gradient(180deg, rgba(240,240,244,1) 0%, #4d22ac 50%);
+    background-repeat: no-repeat;
+}
+
+.action_button_darkred
+{
+    color: #fff;
+    border-color: #ca0013;
+    background: linear-gradient(180deg, rgb(240, 240, 244) 0%, #ca0013 50%);
+    background-repeat: no-repeat;
+}
+
+.action_button_green
+{
+    color: #fff;
+    border-color: #57de2f;
+    background: linear-gradient(180deg, rgb(240, 240, 244) 0%, #2c8f22 50%);
+    background-repeat: no-repeat;
+}
+
+.action_button_lightblue
+{
+    color: #fff;
+    border-color: #55a5cc;
+    background: linear-gradient(180deg,rgba(240,240,244,1) 0%, #55a5cc 50%);
+    background-repeat: no-repeat;
 }

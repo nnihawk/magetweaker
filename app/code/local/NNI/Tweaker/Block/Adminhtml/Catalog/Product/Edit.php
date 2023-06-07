@@ -20,9 +20,7 @@ class NNI_Tweaker_Block_Adminhtml_Catalog_Product_Edit extends Mage_Adminhtml_Bl
             ->setData([
                 'label'     => Mage::helper('catalog')->__('Open in Frontend'),
                 'onclick'   => 'window.open(\'' . $productUrl . '\', \'_blank\')',
-                'class'     => 'go',
-                'style'     => 'color: #fff;border-color: #55a5cc;background: linear-gradient(180deg,
-                                    rgba(240,240,244,1) 0%, #55a5cc 50%)',
+                'class'     => 'action_button_lightblue go',
                 'title'     => 'Open product in frontend for current storeview'
             ]);
         return $this->getChildHtml('back_button') . $openInFrontendButton->toHtml();
