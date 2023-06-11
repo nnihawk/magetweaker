@@ -90,10 +90,11 @@ class NNI_Tweaker_Block_Adminhtml_EmailQueue_Grid extends Mage_Adminhtml_Block_W
             'type'  => 'action',
             'index' => 'action',
             'getter'  => 'getId',
+            'filter'  => false,
             'actions'   => [
                 [
-                    'onclick' => 'clearEmailQueue($message_id, `'. $showMessageUrl .'`)',
-                    'caption' => Mage::helper('catalog')->__('Show Message'),
+                    'onclick' => 'showEmailMessage($message_id, `'. $showMessageUrl .'`)',
+                    'caption' => Mage::helper('catalog')->__('View'),
                     'field'   => 'message_id',
                     'style'   => 'cursor: pointer',
                     'title'   => $this->__('Show content of Email')
@@ -108,8 +109,6 @@ class NNI_Tweaker_Block_Adminhtml_EmailQueue_Grid extends Mage_Adminhtml_Block_W
     {
         $this->setMassactionIdField('message_id');
         $this->getMassactionBlock()->setFormFieldName('message_ids');
-
-
 
         $this->getMassactionBlock()->addItem('remove', [
             'label'    => $this->__('Remove'),

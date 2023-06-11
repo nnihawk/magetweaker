@@ -13,6 +13,6 @@ class NNI_Tweaker_Block_Adminhtml_EmailQueue_Renderer_Parameters
     {
         $value = $row->getData($this->getColumn()->getIndex());
 
-        return '<pre>' . print_r($value, true) .'</pre>';
+        return '<pre>' . str_replace("Array","",print_r($value, true)) .'</pre>';
     }
 }

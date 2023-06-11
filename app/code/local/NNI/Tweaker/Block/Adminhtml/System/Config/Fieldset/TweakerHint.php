@@ -1,6 +1,6 @@
 <?php
 
-class NNI_Tweaker_Block_Adminhtml_System_Config_Fieldset_Hint
+class NNI_Tweaker_Block_Adminhtml_System_Config_Fieldset_TweakerHint
     extends Mage_Adminhtml_Block_Abstract
     implements Varien_Data_Form_Element_Renderer_Interface
 {
@@ -14,8 +14,8 @@ class NNI_Tweaker_Block_Adminhtml_System_Config_Fieldset_Hint
             <tr><td>%s:</td><td>Freeware</td>
             </tr><td>%s:</td><td><a href="mailto:hawkxxx@web.de">hawkxxx@web.de</a></td></tr>
             </tr><td>%s:</td><td>>= 7.0</td></tr>
-            <tr><td colspan="2">%s</td></tr>
         </table>
+        <div style="padding: 5px; background-color: #bdf4bd">This is a small extension for some really missing functionalities in Magento / OpenMage.</div>
         HTML;
 
         $html = sprintf(
@@ -25,8 +25,7 @@ class NNI_Tweaker_Block_Adminhtml_System_Config_Fieldset_Hint
             (string)Mage::getConfig()->getNode('modules/NNI_Tweaker/version'),
             $this->__('License'),
             $this->__('Email'),
-            $this->__('Required PHP-Version'),
-            "This is a small extension for some really missing functionalities in Magento / OpenMage."
+            $this->__('Required PHP-Version')
         );
 
         return $html;

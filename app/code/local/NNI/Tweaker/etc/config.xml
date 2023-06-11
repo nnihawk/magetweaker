@@ -17,6 +17,7 @@
             </nni_tweaker>
             <adminhtml>
                 <rewrite>
+                    <widget_form_renderer_fieldset_element>NNI_Tweaker_Block_Adminhtml_Widget_Form_Element</widget_form_renderer_fieldset_element>
                     <system_config_form_field>NNI_Tweaker_Block_Adminhtml_System_Config_Form_Field</system_config_form_field>
                     <catalog_form_renderer_fieldset_element>NNI_Tweaker_Block_Adminhtml_Catalog_Form_Renderer_Fieldset_Element</catalog_form_renderer_fieldset_element>
                     <catalog_form_renderer_attribute_urlkey>NNI_Tweaker_Block_Adminhtml_Catalog_Form_Renderer_Attribute_Urlkey</catalog_form_renderer_attribute_urlkey>

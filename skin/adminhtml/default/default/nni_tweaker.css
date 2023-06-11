@@ -4,6 +4,33 @@
     word-wrap:break-word;
     display:block
 }
+.tweaker-hint
+{
+    background-image: url('/skin/adminhtml/default/default/images/i_question-mark.png');
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+}
+
+.tweaker-hint-content
+{
+    display: none;
+    background: #fffbf0;
+    border: 1px solid #ffd967;
+    top: 20px;
+    padding: 10px;
+    min-width: 200px;
+}
+
+.tweaker-hint.opened .tweaker-hint-content
+{
+    display: block;
+    position: absolute;
+    z-index: 1000;
+}
 
 .modules-list-table
 {
@@ -68,7 +95,7 @@
 
 .nni_tweaker_hint td
 {
-    min-width: 100px;
+    min-width: 200px;
     padding: 5px;
 }
 

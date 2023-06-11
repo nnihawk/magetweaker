@@ -55,7 +55,7 @@ function clearEmailQueue(url)
     }
 }
 
-function clearEmailQueue(messageId, url)
+function showEmailMessage(messageId, url)
 {
     popupWindow = window.open(url + 'message_id/' + messageId,'Message: ' + messageId,
         'height=500,width=800,left=100,top=100,resizable=yes,scrollbars=yes,' +
@@ -64,3 +64,19 @@ function clearEmailQueue(messageId, url)
         popupWindow.document.title = "Queue-Message: " + messageId;
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.tweaker-hint').forEach(hint => {
+        hint.addEventListener('click', function(e) {
+            if (e.target === hint.querySelector('.tweaker-hint-content')) {
+                return;
+            }
+            document.querySelectorAll('.tweaker-hint.opened').forEach(hintOpened => {
+                if (hint !== hintOpened) {
+                    hintOpened.classList.remove('opened');
+                }
+            });
+            hint.classList.toggle('opened');
+        })
+    })
+})

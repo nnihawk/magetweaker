@@ -1,6 +1,6 @@
 <?php
 
-class NNI_Tweaker_Adminhtml_Category_AttributeController extends Mage_Adminhtml_Controller_Action// Mage_Adminhtml_Catalog_Product_AttributeController
+class NNI_Tweaker_Adminhtml_Category_AttributeController extends Mage_Adminhtml_Controller_Action
 {
     protected function _initAction()
     {
