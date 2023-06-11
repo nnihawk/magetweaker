@@ -24,6 +24,7 @@
                     <show_in_default>1</show_in_default>
                     <show_in_website>0</show_in_website>
                     <show_in_store>0</show_in_store>
+                    <expanded>1</expanded>
                     <fields>
                         <about translate="label" module="paypal">
                             <frontend_model>nni_tweaker/adminhtml_system_config_fieldset_hint</frontend_model>
@@ -51,7 +52,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <comment>Shows also attribute-code under attribute-label in product edit-page</comment>
+                            <comment>Shows also attribute-code under attribute-label. Regards to products, categories, system-config</comment>
                         </show_attribute_codes>
                         <cms_page_allow_import_export translate="label, comment">
                             <label>Allow import/export of cms-pages</label>
@@ -79,7 +80,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <comment>Show also hidden attribute in attribute-manager. Be careful!!!</comment>
+                            <comment><![CDATA[Show also hidden attribute in attribute-manager.<br> <strong style="color:red">Be careful!!!</strong>]]></comment>
                         </show_hidden_attributes>
                     </fields>
                 </general_settings>

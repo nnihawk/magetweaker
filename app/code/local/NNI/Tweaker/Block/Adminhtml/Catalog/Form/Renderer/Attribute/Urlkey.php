@@ -49,7 +49,7 @@ class NNI_Tweaker_Block_Adminhtml_Catalog_Form_Renderer_Attribute_Urlkey extends
         {
             $attribute = $this->getElement()->getEntityAttribute();
 
-            return $value . "<span style='color: #999'> [" . $attribute->getAttributeCode() . "]</span>";
+            return $value . "<span class='attribute-code-view'> [" . $attribute->getAttributeCode() . "]</span>";
         }
         else return $value;
     }

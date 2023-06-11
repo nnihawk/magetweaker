@@ -1,3 +1,10 @@
+.attribute-code-view
+{
+    color: #999;
+    word-wrap:break-word;
+    display:block
+}
+
 .modules-list-table
 {
     width: 100%;

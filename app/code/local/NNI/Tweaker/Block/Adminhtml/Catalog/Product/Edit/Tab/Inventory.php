@@ -18,7 +18,7 @@ class NNI_Tweaker_Block_Adminhtml_Catalog_Product_Edit_Tab_Inventory
                   {
                       let table = document.getElementById("table_cataloginventory");
                       table.querySelectorAll("tr>td.label label").forEach(label => {
-                          let attributeCode = "<span style='color: #999'> [" + label.getAttribute("for") +"]</span>"; 
+                          let attributeCode = "<span class='attribute-code-view'>[" + label.getAttribute("for") +"]</span>"; 
                           label.innerHTML = label.innerHTML + "<br>" +attributeCode;
                       })
                   }

@@ -15,6 +15,8 @@ class NNI_Tweaker_Adminhtml_Tweaker_QueueController extends Mage_Adminhtml_Contr
         $this->loadLayout()->_setActiveMenu('system');
         $this->_title("Email-Queue Overview");
         $block = $this->getLayout()->createBlock('nni_tweaker/adminhtml_emailQueue','email_queue_grid');
+        $messages = $this->getLayout()->getBlock('messages');
+        $messages->addNotice('test');
         $this->_addContent($block);
         $this->renderLayout();
     }

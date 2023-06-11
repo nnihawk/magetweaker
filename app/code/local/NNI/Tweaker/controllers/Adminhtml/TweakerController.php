@@ -80,6 +80,7 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
     public function phpinfoViewAction()
     {
         $this->loadLayout();
+        $this->loadLayout()->_setActiveMenu('system');
         ob_start();
         phpinfo(INFO_GENERAL | INFO_CONFIGURATION | INFO_MODULES | INFO_ENVIRONMENT | INFO_VARIABLES);
         $phpinfo = ob_get_contents();
@@ -109,6 +110,7 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
     public function serverViewAction()
     {
         $this->loadLayout();
+        $this->loadLayout()->_setActiveMenu('system');
         $infoParams = ['DOCUMENT_ROOT', 'SERVER_NAME', 'SERVER_PROTOCOL', 'REMOTE_ADDR', 'SERVER_SOFTWARE',
             'HTTP_USER_AGENT','HTTP_HOST'];
         $serverInfo = '';
@@ -155,6 +157,7 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
     public function openmageViewAction()
     {
         $this->loadLayout();
+        $this->loadLayout()->_setActiveMenu('system');
         $html = '
         <div class="content-header">
                 <table cellspacing="0">
@@ -201,6 +204,7 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
     public function extensionViewAction()
     {
         $this->loadLayout();
+        $this->loadLayout()->_setActiveMenu('system');
         $html = '
         <div class="content-header">
                 <table cellspacing="0">
@@ -237,6 +241,7 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
     public function browserViewAction()
     {
         $this->loadLayout();
+        $this->loadLayout()->_setActiveMenu('system');
         $html = '
         <div class="content-header">
                 <table cellspacing="0">
