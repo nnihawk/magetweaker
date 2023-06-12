@@ -107,6 +107,10 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
         $this->renderLayout();
     }
 
+    /**
+     *  get information of server magento is running
+     * @return void
+     */
     public function serverViewAction()
     {
         $this->loadLayout();
@@ -154,12 +158,16 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
         $this->renderLayout();
     }
 
+    /**
+     *
+     * @return void
+     * @throws Mage_Core_Exception
+     */
     public function openmageViewAction()
     {
         $this->loadLayout();
         $this->loadLayout()->_setActiveMenu('system');
-        $html = '
-        <div class="content-header">
+        $html = '<div class="content-header">
                 <table cellspacing="0">
                     <tbody>
                         <tr>
@@ -176,13 +184,33 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
         foreach ($fields as $field) {
             $html .= '<tr><td class="label">' . $this->__($field) . '</td><td class="value">%s</td></tr>';
         }
+
+
+        $systemLog = Mage::getStoreConfig('dev/log/file');
+        $systemLogSize = $this->getLogFileSize('/var/log/' . $systemLog);
+        $systemLogUrl = Mage::helper('adminhtml')->getUrl(
+            'adminhtml/tweaker/downloadLog',
+            ['logfile' => $systemLog]);
+        $html .= '<tr><td class="label">' . $systemLog . '</td><td class="value"><a href="' . $systemLogUrl . '">' .
+            $systemLog . '</a>' . ' (' . $systemLogSize . ' KB)</td></tr>';
+
+        $exceptionLog = Mage::getStoreConfig('dev/log/exception_file');
+        $exceptionLogSize = $this->getLogFileSize('/var/log/' . $exceptionLog);
+        $exceptionUrl = Mage::helper('adminhtml')->getUrl(
+            'adminhtml/tweaker/downloadLog',
+            ['logfile' => $exceptionLog]);
+        $html .= '<tr><td class="label">' . $exceptionLog . '</td><td class="value"><a href="' . $exceptionUrl . '">' .
+            $exceptionLog . '</a>' . ' (' . $exceptionLogSize . ' KB)</td></tr>';
+
         $html .= '</table>';
 
         $stores = [];
         foreach(Mage::app()->getStores() as $store) {
-            $stores[] = str_pad($store->getId(),5, ' ', STR_PAD_RIGHT) . $store->getName() . ' [' . $store->getCode(). '] -> '.
-                '<a href="' . $store->getBaseUrl() . '">' . $store->getBaseUrl() . '</a>';
+            $stores[] = str_pad($store->getId(),5, ' ', STR_PAD_RIGHT) . $store->getName() .
+                ' [' . $store->getCode(). '] -> ' . '<a href="' . $store->getBaseUrl() . '" target="_blank">' .
+                $store->getBaseUrl() . '</a>';
         }
+        sort($stores);
 
         $html = sprintf(
             $html,
@@ -205,8 +233,7 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
     {
         $this->loadLayout();
         $this->loadLayout()->_setActiveMenu('system');
-        $html = '
-        <div class="content-header">
+        $html = '<div class="content-header">
                 <table cellspacing="0">
                     <tbody>
                         <tr>
@@ -242,8 +269,7 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
     {
         $this->loadLayout();
         $this->loadLayout()->_setActiveMenu('system');
-        $html = '
-        <div class="content-header">
+        $html = '<div class="content-header">
                 <table cellspacing="0">
                     <tbody>
                         <tr>
@@ -269,6 +295,37 @@ class NNI_Tweaker_Adminhtml_TweakerController extends Mage_Adminhtml_Controller_
     {
         $output = shell_exec('mysql -V');
         preg_match('@[0-9]+\.[0-9]+\.[0-9]+@', $output, $version);
-        return $version[0];
+        return $version[0] ?? '???';
+    }
+
+    private function getLogFileSize($file)
+    {
+        $size = filesize(Mage::getBaseDir().$file);
+        return number_format(($size / 1024), 3);
+    }
+
+    /**
+     * download log file from backend if filesize is smaller then 100 MB
+     * @return void
+     */
+    public function downloadLogAction()
+    {
+        $logFile = $this->getRequest()->getParam('logfile','');
+        if ($logFile) {
+            $filename = Mage::getBaseDir('var') . '/log/' . $logFile;
+            $filesize = filesize($filename) / 1024 / 1024;
+            if ($filesize < 100) {
+                $fileContent = file_get_contents($filename);
+                $this->_prepareDownloadResponse($logFile, $fileContent);
+                return;
+            } else {
+                $this->_getSession()->addError($this->__('Error log too big for download (>100 MB)!'));
+            }
+        } else {
+            $this->_getSession()->addError($this->__('Invalid parameters!'));
+        }
+
+
+        $this->_redirectReferer();
     }
 }

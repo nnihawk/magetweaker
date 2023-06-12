@@ -9,7 +9,7 @@ class NNI_Tweaker_Block_Adminhtml_System_Config_Fieldset_TweakerHint
         $html = <<<HTML
         <h3 style="padding: 5px">NNI Tweaker</h3>
         <table class="nni_tweaker_hint">
-            <tr><td>%s:</td><td>Created by Niko Nikolaou 2021 - 2023</td>
+            <tr><td>%s:</td><td>Created by Niko Nikolaou 2020 - 2023</td>
             <tr><td>%s:</td><td>%s</td>
             <tr><td>%s:</td><td>Freeware</td>
             </tr><td>%s:</td><td><a href="mailto:hawkxxx@web.de">hawkxxx@web.de</a></td></tr>

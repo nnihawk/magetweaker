@@ -6,11 +6,11 @@ class NNI_Tweaker_Block_Adminhtml_System_Config_HintFieldSystemConfig
     {
         $this->addColumn('config_path', array(
             'label' => $this->__('Config Path'),
-            'style' => 'width:200px',
+            'style' => 'width:400px',
         ));
         $this->addColumn('hint', array(
             'label' => $this->__('Hint-Text'),
-            'style' => 'width:200px',
+            'style' => 'width:400px',
             //'renderer' => $this->_getRenderer(),
         ));
 

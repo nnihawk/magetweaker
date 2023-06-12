@@ -62,6 +62,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
+                            <comment>Allow export and import as JSON-files</comment>
                         </cms_page_allow_import_export>
                         <allow_order_email_change translate="label, comment">
                             <label>Allow to change email of orders</label>
@@ -120,7 +121,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment><![CDATA[Create hints for system-config options]]></comment>
+                            <comment><![CDATA[Create hints for system-config options<br>Config-Path: <strong>namespace/group/field</strong>]]></comment>
                         </system_config>
                     </fields>
                 </hint_configuration>

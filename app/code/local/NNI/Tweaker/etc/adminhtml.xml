@@ -51,11 +51,22 @@
                         </browser_info>
                     </children>
                 </nni_information>
-                <nni_email_queue translate="title" module="nni_tweaker">
-                    <title>Email-Queue Overview</title>
-                    <sort_order>-10</sort_order>
-                    <action>adminhtml/tweaker_queue/index</action>
-                </nni_email_queue>
+                <email_template translate="title">
+                    <title>Transactional Emails</title>
+                    <action></action>
+                    <children>
+                        <email_templates>
+                            <title>Transactional Emails</title>
+                            <action>adminhtml/system_email_template</action>
+                            <sort_order>60</sort_order>
+                        </email_templates>
+                        <nni_email_queue translate="title" module="nni_tweaker">
+                            <title>Email-Queue Overview</title>
+                            <sort_order>100</sort_order>
+                            <action>adminhtml/tweaker_queue/index</action>
+                        </nni_email_queue>
+                    </children>
+                </email_template>
             </children>
         </system>
     </menu>
