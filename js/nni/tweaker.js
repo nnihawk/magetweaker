@@ -55,6 +55,7 @@ function clearEmailQueue(url)
     }
 }
 
+
 function showEmailMessage(messageId, url)
 {
     popupWindow = window.open(url + 'message_id/' + messageId,'Message: ' + messageId,
@@ -65,7 +66,34 @@ function showEmailMessage(messageId, url)
     });
 }
 
+function createToTopButton()
+{
+    function updateToTopButton()
+    {
+        let windowScrollY = window.scrollY;
+        let treshold = windowScrollY / document.documentElement.scrollHeight * 100;
+        if (treshold >= 5) {
+            button.classList.add('show');
+        } else {
+            button.classList.remove('show');
+        }
+    }
+
+    let button = document.createElement('div');
+    button.classList.add('to-top-button');
+    button.onclick  = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    document.querySelector('body').append(button);
+    document.addEventListener("scroll", function(){
+        updateToTopButton();
+    });
+
+    updateToTopButton();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    //--- show hints for system-config options
     document.querySelectorAll('.tweaker-hint').forEach(hint => {
         hint.addEventListener('click', function(e) {
             if (e.target === hint.querySelector('.tweaker-hint-content')) {
@@ -79,4 +107,9 @@ document.addEventListener('DOMContentLoaded', function() {
             hint.classList.toggle('opened');
         })
     })
+
+    //--- create scroll-to-top button
+    if (typeof tweakerAllowScrollToTop !== 'undefined' && tweakerAllowScrollToTop) {
+        createToTopButton();
+    }
 })

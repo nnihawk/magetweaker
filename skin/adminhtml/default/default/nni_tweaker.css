@@ -130,3 +130,36 @@
     background: linear-gradient(180deg,rgba(240,240,244,1) 0%, #55a5cc 50%);
     background-repeat: no-repeat;
 }
+
+.to-top-button
+{
+    position: fixed;
+    display: none;
+    opacity: 0;
+    right: 20px;
+    bottom: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: #f7cb99cf;
+    background-image: url('images/tweaker/up-arrow.png');
+    background-repeat: no-repeat;
+    background-size: 30px;
+    border: 1px solid gray;
+    padding: 10px;
+    background-position: center;
+    cursor: pointer;
+    transition: opacity 10s ease-out;
+}
+
+.to-top-button.show
+{
+    opacity: 1;
+    display: block;
+    transition: opacity 10s ease-in;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+}
+
+.to-top-button.show:hover
+{
+    background-color: rgba(247, 203, 153, 0.96);
+}

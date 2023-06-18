@@ -3,6 +3,11 @@
 <layout>
     <default>
         <reference name="head">
+            <block type="core/text" name="tweaker_vars" >
+                <action method="setText" ifconfig="nni_tweaker/general_settings/show_scroll_to_top">
+                    <text><![CDATA[<script>var tweakerAllowScrollToTop = true;</script>]]></text>
+                </action>
+            </block>
             <action method="addJs"><script>nni/tweaker.js</script></action>
             <action method="addCss"><name>nni_tweaker.css</name></action>
         </reference>
